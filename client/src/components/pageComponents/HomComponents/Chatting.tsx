@@ -133,7 +133,7 @@ export default function Chatting() {
                 {item?.user?.username}
               </p>
               <div
-                className={`relative max-w-lg rounded-2xl flex gap-2 p-4 shadow-md ${
+                className={`relative max-w-lg rounded-lg flex justify-between gap-2 py-3 pr-3 px-1 shadow-md ${
                   Number(userId) === item?.user?.id
                     ? "mr-5 bg-green-300"
                     : "ml-5 bg-white"
@@ -142,7 +142,7 @@ export default function Chatting() {
                 <div className="flex items-center justify-center z-50">
                   {Number(userId) === item?.user?.id && <ButtonHeadless onClick={() => handleDelete(item.id)}/>}
                 </div>
-                <p className="text-black">{item.content}</p>
+                <p className="text-black text-sm">{item.content}</p>
 
                 <p className="text-[10px] text-gray-400 flex justify-end items-end translate-y-2">
                   {formatMessageTime(new Date(item.created_at))}

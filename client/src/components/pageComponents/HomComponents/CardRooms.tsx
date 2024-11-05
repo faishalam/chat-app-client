@@ -11,6 +11,7 @@ import cable from "@/lib/cable";
 export default function CardRooms() {
   const { dataRooms, setRoomId } = useHomeContext();
   const [data, setData] = useState<DataRoomsResponse[]>([]);
+  const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
 
   useEffect(() => {
     const messagesChannel = cable.subscriptions.create("RoomsChannel", {
@@ -32,12 +33,19 @@ export default function CardRooms() {
 
   return (
     <>
-      <div className="flex flex-col w-full p-2 gap-1 ">
+      <div className="flex flex-col w-full p-2 ">
         {data?.map((item: DataRoomsResponse) => (
           <div
-            className="w-full p-4 border-gray-500 shadow-sm hover:bg-neutral-300 transition-all cursor-pointer border-l-transparent border-r-transparent bg-gray-100 rounded-lg"
+            className={`w-full p-4 transition-all cursor-pointer border-b ${
+              selectedRoomId === item.id
+                ? "bg-neutral-100"
+                : "hover:bg-neutral-100"
+            }`}
             key={item.id}
-            onClick={() => setRoomId(item.id)}
+            onClick={() => {
+              setRoomId(item.id);
+              setSelectedRoomId(item.id); 
+            }}
           >
             <div className="relative flex justify-between items-center">
               <div className="flex gap-2 items-center">

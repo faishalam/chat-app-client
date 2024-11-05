@@ -15,18 +15,15 @@ export default function ButtonHeadless({ onClick }: Props) {
       <MenuItems
         transition
         anchor="bottom end"
-        className="w-52 origin-top-right rounded-xl border hover:bg-gray-100 bg-white p-1 text-sm/6 text-black transition duration-100 ease-out z-50 [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+        className="w-20 origin-top-right rounded-xl border hover:bg-red-100 bg-gray-100 p-1 text-sm/6 text-black transition duration-100 ease-out z-50 "
       >
         <MenuItem>
           <button
             onClick={onClick}
-            className="group flex w-full items-center gap-2 rounded-lg data-[focus]:bg-white/10"
+            className="group flex w-full items-center justify-center gap-2 rounded-lg p-1"
           >
-            <PencilIcon className="size-4 fill-white/30 z-50" />
+            <PencilIcon className="size-4 fill-red z-50" />
             Delete
-            <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-              ⌘E
-            </kbd>
           </button>
         </MenuItem>
       </MenuItems>

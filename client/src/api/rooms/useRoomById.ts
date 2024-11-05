@@ -10,6 +10,7 @@ type Props = {
 };
 
 const useRoomById = (props: Props) => {
+  console.log(props)
   const useRoomByIdFn = async () => {
     try {
       const response = await HeroServices.get(
@@ -29,7 +30,7 @@ const useRoomById = (props: Props) => {
   const query = useQuery({
     queryKey: ["use-room-by-id", props?.params],
     queryFn: useRoomByIdFn,
-    enabled: Boolean(props?.params?.roomId),
+    enabled: Boolean(props?.params?.roomId !== null),
   });
 
   return { ...query };
