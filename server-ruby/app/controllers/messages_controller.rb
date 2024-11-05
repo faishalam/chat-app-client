@@ -24,12 +24,16 @@ class MessagesController < ApplicationController
     end
 
     def destroy
+      @room = Room.find(params[:room_id])
+      @message = @room.messages.find(params[:id])
+      
       if @message.user_id == @current_user_id
         @message.destroy
-        ActionCable.server.broadcast("messages_channel", { action: 'delete', message_id: @message.id })
-        render json: { message: "Message deleted successfully" }, status: :ok
+        ActionCable.server.broadcast("messages_channel", { id: @message.id, action: 'delete' })
+        
+        render json: { message: 'Message deleted successfully' }, status: :ok
       else
-        render json: { error: "You are not authorized to delete this message" }, status: :forbidden
+        render json: { error: 'Not authorized to delete this message' }, status: :forbidden
       end
     end
   

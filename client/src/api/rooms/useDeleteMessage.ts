@@ -10,9 +10,9 @@ interface Props {
 
 
 const useDeleteMessage = (props: Props) => {
-  const useDeleteMessageFn = async ({id}: DeleteRoom) => {
+  const useDeleteMessageFn = async ({messageId, roomId}: DeleteRoom) => {
     try {
-      const response = await HeroServices.delete(`/rooms/${id}`);
+      const response = await HeroServices.delete(`/rooms/${roomId}/messages/${messageId}`);
 
       const { status } = response;
 

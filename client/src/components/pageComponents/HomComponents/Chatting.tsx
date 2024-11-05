@@ -58,16 +58,28 @@ export default function Chatting() {
   useEffect(() => {
     const messagesChannel = cable.subscriptions.create("MessagesChannel", {
       received(newMessage) {
-        setData((prevData) => {
-          if (prevData) {
-            return {
-              ...prevData,
-              messages: [...prevData.messages, newMessage],
-            };
-          }
-          return prevData;
-        });
-      },
+        if (newMessage.action === 'delete') {
+          setData((prevData) => {
+            if (prevData) {
+              return {
+                ...prevData,
+                messages: prevData.messages.filter(msg => msg.id !== newMessage.id),
+              };
+            }
+            return prevData;
+          });
+        } else {
+          setData((prevData) => {
+            if (prevData) {
+              return {
+                ...prevData,
+                messages: [...prevData.messages, newMessage],
+              };
+            }
+            return prevData;
+          });
+        }
+      }
     });
     return () => {
       queryClient.refetchQueries({
@@ -79,10 +91,12 @@ export default function Chatting() {
 
   const handleDelete = (id: number) => {
     const payload = {
-      id 
+      messageId: id,
+      roomId: roomId 
     }
     mutateDeleteMessage(payload)
   };
+
 
   return (
     <>
@@ -125,7 +139,7 @@ export default function Chatting() {
                     : "ml-5 bg-white"
                 }`}
               >
-                <div className="flex items-center justify-center z-auto">
+                <div className="flex items-center justify-center z-50">
                   {Number(userId) === item?.user?.id && <ButtonHeadless onClick={() => handleDelete(item.id)}/>}
                 </div>
                 <p className="text-black">{item.content}</p>

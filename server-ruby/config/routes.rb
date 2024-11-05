@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   
   resources :rooms do
-    resources :messages, only: [:index, :create]
+    resources :messages, only: [:index, :create, :destroy]
   end
 
   mount ActionCable.server => '/cable'

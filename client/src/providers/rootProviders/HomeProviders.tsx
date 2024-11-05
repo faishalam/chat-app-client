@@ -63,7 +63,8 @@ export interface DataDeleteResponse {
 }
 
 export interface DeleteRoom {
-  id: number;
+  messageId: number;
+  roomId: number | null;
 }
 
 interface HomeContextProps {
