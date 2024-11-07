@@ -79,14 +79,6 @@ export default function HomeLayout() {
                 <Chatting />
               </div>
             )}
-
-            {/* <div
-              className={`${
-                openChatting ? "block" : "hidden"
-              } relative flex flex-col max-w-full w-full rounded-md overflow-hidden shadow`}
-            >
-              <Chatting />
-            </div> */}
           </div>
         </div>
 

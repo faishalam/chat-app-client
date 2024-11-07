@@ -13,7 +13,7 @@ interface Props {
     isLoadingAddRoom: boolean;
 }
 
-export default function ModalAddRooms({openModal, setOpenModal, register, handleSubmit, mutateAddRoom} : Props) {
+export default function ModalAddRooms({openModal, setOpenModal, register, handleSubmit, mutateAddRoom, isLoadingAddRoom} : Props) {
     const onSubmit: SubmitHandler<InputCreateRoom> = (data) => {
       const { name } = data;
       const payload = {
@@ -56,6 +56,7 @@ export default function ModalAddRooms({openModal, setOpenModal, register, handle
                     type="submit"
                     classname="inline-flex w-full justify-center rounded-md bg-neutral-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-neutral-800 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     btnText="Create"
+                    btnLoading={isLoadingAddRoom}
                   />
                 </div>
               </form>
@@ -63,7 +64,6 @@ export default function ModalAddRooms({openModal, setOpenModal, register, handle
           </div>
         </div>
       </Dialog>
-     
     </>
   );
 }
