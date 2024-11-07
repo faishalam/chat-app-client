@@ -4,9 +4,7 @@ import { HomeProviders } from "@/providers/rootProviders/HomeProviders";
 export default function Page() {
   return (
     <>
-      <HomeProviders>
-        <HomeLayout />
-      </HomeProviders>
+      <HomeLayout />
     </>
   );
 }

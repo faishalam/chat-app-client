@@ -2,6 +2,7 @@ import { SidebarDemo } from "@/components/sidebar/SidebarDemo";
 import React from "react";
 import "../../app/globals.css";
 import { QueryProvider } from "@/components/QueryProviders/QueryClient";
+import { HomeProviders } from "@/providers/rootProviders/HomeProviders";
 
 export const metadata = {
   title: "KPP Monitoring",
@@ -13,7 +14,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <div className="max-w-full w-full h-screen bg-gray-100">
         <QueryProvider>
-            <SidebarDemo>{children}</SidebarDemo>
+          <SidebarDemo>
+            <HomeProviders>{children}</HomeProviders>
+          </SidebarDemo>
         </QueryProvider>
       </div>
     </>

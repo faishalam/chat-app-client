@@ -92,8 +92,10 @@ const AuthProviders = ({ children }: AuthProvidersProps) => {
   const { mutate: mutateLogin, isLoading: isLoadingLogin } = useLogin({
     onSuccess: (data : DataLogin) => {
       localStorage.setItem("user_id", data?.user?.id.toString());
-      Cookies.set('Authorization', `Bearer ${data?.access_token}`, { expires: 7 });  // expires: 7 is optional, you can adjust the expiration
+      Cookies.set('Authorization', `Bearer ${data?.access_token}`, { expires: 7 }); 
+      Cookies.set('user_id', data?.user?.id.toString(), { expires: 7 });
       router.push("/")
+      AlertSuccess("Login Success")
     },
     onError: (error : TypeError) => {
       AlertError(error?.response?.data?.message || "Unknown error occurred");

@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import cable from "@/lib/cable";
 import { useQueryClient } from "react-query";
 import ButtonHeadless from "@/components/button/ButtonHeadless";
+import Cookies from "js-cookie"; 
 
 export default function Chatting() {
   const {
@@ -25,7 +26,8 @@ export default function Chatting() {
     mutateDeleteMessage
   } = useHomeContext();
 
-  const { userId } = useAuthContext();
+  const userId = Cookies.get("user_id");
+  // const { userId } = useAuthContext();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<RoomByIdResponse>();
   const queryClient = useQueryClient();

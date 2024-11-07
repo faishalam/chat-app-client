@@ -1,6 +1,7 @@
 import { QueryProvider } from "@/components/QueryProviders/QueryClient";
 import "../../app/globals.css";
 import LayoutAuth from "@/components/layout/LayoutAuth";
+import { AuthProviders } from "@/providers/authProviders/AuthProviders";
 
 export default function AuthLayout({
   children,
@@ -10,7 +11,11 @@ export default function AuthLayout({
   return (
     <>
       <LayoutAuth>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <AuthProviders>
+          {children}
+          </AuthProviders>
+          </QueryProvider>
       </LayoutAuth>
     </>
   );

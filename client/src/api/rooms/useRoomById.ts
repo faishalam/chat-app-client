@@ -11,6 +11,7 @@ type Props = {
 
 const useRoomById = (props: Props) => {
   const useRoomByIdFn = async () => {
+    if(!props?.params?.roomId) return
     try {
       const response = await HeroServices.get(
         `rooms/${props?.params?.roomId}`
