@@ -7,6 +7,7 @@ import { timeAgo } from "@/lib/timeAgo";
 import Chatting from "./Chatting";
 import { HiMiniUsers } from "react-icons/hi2";
 import { useEffect, useState } from "react";
+import LoadingSkeletonRoomList from "@/components/loading/LoadingSkeletonRoomList";
 
 export default function HomeLayout() {
   const {
@@ -17,16 +18,17 @@ export default function HomeLayout() {
     mutateAddRoom,
     isLoadingAddRoom,
     dataRoomById,
-    roomId
+    roomId,
+    isLoadingRooms,
   } = useHomeContext();
 
-  const [openChatting, setOpenChatting] = useState<boolean>(false)
+  const [openChatting, setOpenChatting] = useState<boolean>(false);
 
   useEffect(() => {
     if (roomId) {
-      setOpenChatting(true)
+      setOpenChatting(true);
     }
-  }, [roomId])
+  }, [roomId]);
 
   return (
     <>
@@ -42,7 +44,11 @@ export default function HomeLayout() {
               />
             </div>
 
-            <div className={`flex w-full max-w-full rounded-md bg-gray-100 px-4 shadow-sm justify-start items-center gap-2 ${openChatting ? "block" : "hidden"}`}>
+            <div
+              className={`flex w-full max-w-full rounded-md bg-gray-100 px-4 shadow-sm justify-start items-center gap-2 ${
+                openChatting ? "block" : "hidden"
+              }`}
+            >
               <div className="w-8 h-8 rounded-full border flex items-center justify-center bg-gray-400">
                 <HiMiniUsers size={20} className="text-white" />
               </div>
@@ -59,12 +65,28 @@ export default function HomeLayout() {
 
           <div className="flex max-w-full w-full gap-2 h-full">
             <div className="max-w-xl w-full h-full text-white overflow-y-scroll">
-              <CardRooms />
+              {isLoadingRooms ? <LoadingSkeletonRoomList /> : <CardRooms />}
             </div>
 
-            <div className={`${openChatting ? "block" : "hidden"} relative flex flex-col max-w-full w-full rounded-md overflow-hidden shadow`}>
+            {!openChatting ? (
+              <div className="flex justify-center items-center max-w-full w-full text-gray-400">
+                Choose Any Room
+              </div>
+            ) : (
+              <div
+                className={`relative flex flex-col max-w-full w-full rounded-md overflow-hidden shadow`}
+              >
+                <Chatting />
+              </div>
+            )}
+
+            {/* <div
+              className={`${
+                openChatting ? "block" : "hidden"
+              } relative flex flex-col max-w-full w-full rounded-md overflow-hidden shadow`}
+            >
               <Chatting />
-            </div>
+            </div> */}
           </div>
         </div>
 
