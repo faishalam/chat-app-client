@@ -33,7 +33,7 @@ export default function CardRooms() {
 
   return (
     <>
-      <div className="flex flex-col w-full p-2 ">
+      <div className="flex flex-col w-full p-2 h-[800px]">
         {data?.map((item: DataRoomsResponse) => (
           <div
             className={`w-full p-4 transition-all cursor-pointer border-b ${

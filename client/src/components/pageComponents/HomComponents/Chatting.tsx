@@ -109,7 +109,6 @@ export default function Chatting() {
       </div>
       {/* <div className="absolute inset-0 bg-black opacity-30 z-10"></div> */}
 
-      {/* Flex Container untuk pesan */}
       {isLoadingRoomById ? (
         <div className="relative z-20 p-2 flex flex-col gap-4 flex-grow overflow-auto justify-center items-center">
           <LoadingSpinner />
@@ -154,7 +153,6 @@ export default function Chatting() {
         </div>
       )}
 
-      {/* Form untuk input */}
       <div className="relative w-full max-w-full z-50 bg-gray-100 p-4 ">
         <form
           onSubmit={handleSubmitAddMessage(onSubmit)}

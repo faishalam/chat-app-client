@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import useLogin from "@/api/Auth/useLogin";
 import { AlertError, AlertSuccess } from "@/components/alert/AlertToastify";
 import useRegister from "@/api/Auth/useRegister";
+import Cookies from "js-cookie";
 
 export type InputsLogin = {
   email: string;
@@ -91,7 +92,7 @@ const AuthProviders = ({ children }: AuthProvidersProps) => {
   const { mutate: mutateLogin, isLoading: isLoadingLogin } = useLogin({
     onSuccess: (data : DataLogin) => {
       localStorage.setItem("user_id", data?.user?.id.toString());
-      localStorage.setItem("access_token", data?.access_token);
+      Cookies.set('Authorization', `Bearer ${data?.access_token}`, { expires: 7 });  // expires: 7 is optional, you can adjust the expiration
       router.push("/")
     },
     onError: (error : TypeError) => {

@@ -14,7 +14,6 @@ type FormLogin = {
 
 const useLogin = (props: Props) => {
   const useLoginFn = async (formLogin: FormLogin) => {
-    console.log(formLogin);
     try {
       const response = await AuthServices.post(`/users/login`, formLogin);
 

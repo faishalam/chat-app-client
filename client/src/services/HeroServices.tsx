@@ -1,6 +1,8 @@
 import Axios from "axios";
+import Cookies from "js-cookie"; 
 
-const baseURL = "http://localhost:3002/";
+// const baseURL = "http://localhost:3004/";
+const baseURL = 'https://chat-web-app-1358486b4ea0.herokuapp.com/';
 
 export const HeroServices = Axios.create({
   baseURL: baseURL,
@@ -9,11 +11,11 @@ export const HeroServices = Axios.create({
   },
 });
 
-// Interceptor untuk menambahkan token authorization pada setiap request
 HeroServices.interceptors.request.use((config) => {
-  const token = typeof window !== "undefined" ? localStorage.getItem("access_token") : null;
+  const token = typeof window !== "undefined" ? Cookies.get("Authorization") : null; 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 }, (error) => Promise.reject(error));
+

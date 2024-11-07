@@ -58,7 +58,7 @@ export default function HomeLayout() {
           </div>
 
           <div className="flex max-w-full w-full gap-2 h-full">
-            <div className="max-w-xl w-full max-h-full h-full text-white overflow-y-scroll">
+            <div className="max-w-xl w-full h-full text-white overflow-y-scroll">
               <CardRooms />
             </div>
 

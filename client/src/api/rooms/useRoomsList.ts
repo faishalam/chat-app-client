@@ -19,7 +19,6 @@ const useRoomList = () => {
   const query = useQuery({
     queryKey: ["use-room-list"],
     queryFn: useRoomListFn,
-    // enabled: !!localStorage.getItem("access_token"),
   });
 
   return { ...query };

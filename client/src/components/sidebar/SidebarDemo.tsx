@@ -9,47 +9,51 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Sidebar, SidebarBody, SidebarLink } from "./Sidebar";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export function SidebarDemo({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+
   const links = [
     {
       label: "Dashboard",
-      href: "#",
       icon: (
         <IconBrandTabler className="text-neutral-700 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "Profile",
-      href: "#",
-      icon: (
-        <IconUserBolt className="text-neutral-700 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Settings",
-      href: "#",
-      icon: (
-        <IconSettings className="text-neutral-700 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
       label: "Logout",
-      href: "#",
       icon: (
         <IconArrowLeft className="text-neutral-700 h-5 w-5 flex-shrink-0" />
       ),
+      onClick: () => handleLogout(),
     },
   ];
+
+  const handleLogout = () => {
+    Cookies.remove("Authorization");
+    localStorage.removeItem("user_id");
+    router.push("/login");
+  };
   return (
     <div className="rounded-md flex flex-col md:flex-row bg-gray-100 w-full h-full flex-1 mx-auto border border-neutral-200 overflow-hidden">
       <Sidebar open={false} setOpen={() => {}}>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-            <LogoIcon /> {/* Gunakan LogoIcon statis */}
+            <LogoIcon />
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link} />
+                <button
+                  className={cn(
+                    "flex items-center justify-start gap-2  group/sidebar py-2"
+                  )}
+                  onClick={link.onClick}
+                  key={idx}
+                >
+                  {link.icon}
+                </button>
               ))}
             </div>
           </div>
