@@ -14,6 +14,7 @@ Deploy BE & Database : Heroku
 - User Register
 - User Login
 - Get All Rooms
+- Gel Rooms By Id
 - Create Rooms (Real Time)
 - Create Message (Real Time)
 - Delete Message (Real Time)
@@ -24,7 +25,7 @@ First clone :
 
 ```
 - FE : npm i
-- BE Bundle update / Bundle install
+- BE : Bundle update / Bundle install
 ```
 
 Run the development server:
