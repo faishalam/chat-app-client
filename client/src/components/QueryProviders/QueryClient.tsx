@@ -1,6 +1,5 @@
 "use client";
 
-import { AuthProviders } from "@/providers/authProviders/AuthProviders";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 

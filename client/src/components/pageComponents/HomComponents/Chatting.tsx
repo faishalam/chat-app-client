@@ -6,7 +6,6 @@ import {
 import { SubmitHandler } from "react-hook-form";
 import { IoSend } from "react-icons/io5";
 import LoadingSpinner from "@/components/loading/LoadingSpinner";
-import { useAuthContext } from "@/providers/authProviders/AuthProviders";
 import { formatMessageTime } from "@/lib/formatMessageTime";
 import { useEffect, useRef, useState } from "react";
 import cable from "@/lib/cable";
