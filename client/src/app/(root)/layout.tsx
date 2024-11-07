@@ -5,9 +5,10 @@ import { QueryProvider } from "@/components/QueryProviders/QueryClient";
 import { HomeProviders } from "@/providers/rootProviders/HomeProviders";
 
 export const metadata = {
-  title: "KPP Monitoring",
-  description: "KPP Monitoring Assets Management System",
+  title: "Chat Web App",
+  description: "Chat Web App - Pick Any Topic",
 };
+
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
