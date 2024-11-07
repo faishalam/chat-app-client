@@ -36,7 +36,7 @@ export default function ButtonSubmit({
         disabled={btnLoading || disabled}
         className={
           btnLoading
-            ? "bg-green-800 rounded p-2 disabled:grayscale-0 disabled:cursor-progress w-full"
+            ? "bg-neutral-700 rounded p-2 disabled:grayscale-0 disabled:cursor-progress w-full"
             : classname ?? "btn-primary"
         }
         onClick={handleOnClick}
