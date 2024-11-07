@@ -5,6 +5,7 @@ DEPLOYMENT LINK : https://chat-app-fullstack-mu.vercel.app/
 - FE Tech : NextJS, TypeScript, React Query, Context API, React Hooks Form, Tailwind CSS
 - FE UI : Atomic Design (Slicing), Tailwind CSS
 - BE Tech : Ruby on Rails, JWT, Bcrypt, ApplicationCable
+- Test : Model & Controller (rspec-rails)
 
 Deploy FE : Vercel
 Deploy BE & Database : Heroku
