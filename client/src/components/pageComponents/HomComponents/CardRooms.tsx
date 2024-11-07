@@ -1,4 +1,3 @@
-// import roomsChannel from "@/lib/roomChannel";
 import { timeAgo } from "@/lib/timeAgo";
 import {
   DataRoomsResponse,
@@ -16,7 +15,13 @@ export default function CardRooms() {
   useEffect(() => {
     const messagesChannel = cable.subscriptions.create("RoomsChannel", {
       received(newRoom) {
-        setData((prevData) => [...prevData, newRoom]);
+        setData((prevData) => {
+          const isRoomExist = prevData.some((room) => room.id === newRoom.id);
+          if (!isRoomExist) {
+            return [newRoom, ...prevData];
+          }
+          return prevData; 
+        });
       },
     });
 
